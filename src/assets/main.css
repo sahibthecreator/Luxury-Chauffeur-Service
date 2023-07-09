@@ -1,0 +1,10 @@
+@import "./base.css";
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+#app {
+  width: 100%;
+  margin: 0;
+  font-weight: normal;
+  font-family: "Cinzel", "Inter", sans-serif;
+  background: linear-gradient(135deg, #0E1542 0%, #000318 100%);
+}/*# sourceMappingURL=main.css.map */
