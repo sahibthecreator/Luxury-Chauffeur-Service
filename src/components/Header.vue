@@ -15,10 +15,10 @@
         </section>
 
         <section class="nav">
-            <p>Home</p>
-            <p>About Us</p>
-            <p>Contact Us</p>
-            <p>VIP Transfer</p>
+            <p @click="navigate('Home')">Home</p>
+            <p @click="navigate('About')">About Us</p>
+            <p @click="navigate('Contact')"> Contact Us</p>
+            <p @click="navigate('Airport')">Airport Transfer</p>
             <div class="rectangle-wrapper">
                 <svg class="rectangle" width="273" height="49" viewBox="0 0 273 49" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -26,9 +26,9 @@
                 </svg>
                 <img src="@/assets/img/logo.webp" alt="Lord Concierge Logo" class="img-fluid">
             </div>
-            <p>Rent Car</p>
-            <p>Wedding Car</p>
-            <p>Property</p>
+            <p @click="navigate('Rent')">Rent Car</p>
+            <p @click="navigate('Wedding')">Wedding Car</p>
+            <p @click="navigate('Property')">Property</p>
             <img src="@/assets/img/user-icon.webp" alt="User Icon" class="img-fluid">
         </section>
 
@@ -45,8 +45,68 @@ export default {
         }
     },
     mounted() {
+        var url = window.location.href;
+        var page = url.substring(url.lastIndexOf("/") + 1, url.length);
+        switch (page) {
+            case "":
+                document.querySelectorAll(".nav p")[0].classList.add("selected");
+                break;
+            case "about-us":
+                document.querySelectorAll(".nav p")[1].classList.add("selected");
+                break;
+            case "contact-us":
+                document.querySelectorAll(".nav p")[2].classList.add("selected");
+                break;
+            case "airport-transfer":
+                document.querySelectorAll(".nav p")[3].classList.add("selected");
+                break;
+            case "car-rent":
+                document.querySelectorAll(".nav p")[4].classList.add("selected");
+                break;
+            case "wedding-car-hire":
+                document.querySelectorAll(".nav p")[5].classList.add("selected");
+                break;
+            case "property-management":
+                document.querySelectorAll(".nav p")[6].classList.add("selected");
+                break;
+        }
+
     },
     methods: {
+        navigate(page) {
+            //console.log(this.$route.name);
+
+            switch (page) {
+
+                case "Home":
+                    this.$router.push('/');
+                    break;
+                case "Airport":
+                    this.$router.push('/airport-transfer');
+                    break;
+                case "About":
+                    this.$router.push('/about-us');
+                    break;
+                case "Contact":
+                    this.$router.push('/contact-us');
+                    break;
+                case "Rent":
+                    this.$router.push('/car-rent');
+                    break;
+                case "Wedding":
+                    this.$router.push('/wedding-car-hire');
+                    break;
+                case "Property":
+                    this.$router.push('/property-management');
+                    break;
+            }
+            document.querySelectorAll(".nav p").forEach(e => {
+                e.classList.remove("selected");
+                if (e.innerText.startsWith(page)) {
+                    e.classList.add("selected");
+                }
+            });
+        }
     }
 }
 </script>
@@ -121,17 +181,29 @@ export default {
     width: 100%;
     padding: 0 45px;
     gap: 3rem;
+    background-color: #141414a1;
+
     p {
         font-family: "Cinzel";
         font-size: 14px;
         color: #FFF;
         margin-top: 0.5rem;
         cursor: pointer;
+
+        &:hover {
+            color: #B08500;
+        }
+
+        &.selected {
+            color: #B08500;
+        }
     }
-    img{
+
+    img {
         margin-top: 0.5rem;
         height: 1.2rem;
         width: auto;
+        cursor: pointer;
     }
 
     .rectangle-wrapper {

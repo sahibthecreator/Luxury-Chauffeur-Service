@@ -27,7 +27,7 @@ export default {
     border-radius: 0;
     p {
         color: #FFF;
-        font-size: 1rem;
+        font-size: 16px;
         font-family: "Inter";
         font-weight: 600;
         margin: 0;

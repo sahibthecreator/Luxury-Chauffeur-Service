@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>{{ text }}</h1>
+        <h2>{{ text }}</h2>
         <span class="gold-line"></span>
     </div>
 </template>
@@ -15,16 +15,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-div{
+div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 4rem 0 2rem 0;
-    h1{
+    margin: 6rem 0 1rem 0;
+
+    h2 {
+        color: #FFF;
         margin: 0;
+        letter-spacing: 3px;
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+        text-align: center;
     }
 }
+
 .gold-line {
     display: block;
     background: #B08500;

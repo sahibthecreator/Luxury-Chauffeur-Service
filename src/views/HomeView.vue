@@ -1,52 +1,86 @@
 <script setup>
-import PrimaryButton from '../components/PrimaryButton.vue';
 import SecondaryButton from '../components/SecondaryButton.vue';
+import PrimaryButton from '../components/PrimaryButton.vue';
 import SectionHeading from '../components/SectionHeading.vue';
-import CarPreview from '../components/CarPreview.vue';
+import ServicePreview from '../components/ServicePreview.vue';
+import ContactPanel from '../components/ContactPanel.vue';
 </script>
 
 <template>
-    <div class="airport-page">
-
+    <div class="home-page">
         <section class="main-image-wrapper">
-            <img src="@/assets/img/airport-main-image.webp" alt="Airport luxury meet & greet">
-            <h1>VIP AIRPORT MEET & GREET</h1>
-            <h2>Luxury vehicles</h2>
+            <img src="@/assets/img/home-main-image.webp" alt="Airport luxury meet & greet">
+            <h1>Journey in Luxury, Depart with Prestige</h1>
+            <h5>Book a luxury transfer with chauffeur from plane to door</h5>
+            <SecondaryButton text="BOOK NOW" class="btn" />
         </section>
 
         <section class="introduction">
+            <img src="@/assets/img/driver-image.webp" alt="Luxury driver image from rear seats">
+
             <article>
-                <h1>Meet and Greet Service</h1>
+                <h1>Baku Chauffeurs & Luxury Car Rent</h1>
                 <span class="gold-line"></span>
                 <p>
-                    At Lord Concierge, we understand that your arrival at the airport sets the tone for your entire journey.
-                    That's why we have designed our VIP Airport Meet & Greet service to provide an unparalleled experience
-                    of luxury, convenience, and personalized attention from the moment you step off the plane.
+                    Lord Concierge is home to the most prestigious and luxurious of concierge services and the finest car
+                    hire and chauffeur service in Baku. We own our fleet of vehicles, each offering luxury chauffeuring and
+                    luxury super car hire services providing our clients with the opportunity to drive, and be seen in, the
+                    world’s finest vehicles.
                     <br><br>
-                    You can trust that our chauffeurs will not only provide a smooth and safe journey but also serve as your
-                    personal ambassadors, ready to assist with any special requests or local recommendations.
+                    We also pride ourselves in understanding the needs of our clients and over-delivering on their
+                    expectations. With a strong reputation for outstanding customer service, you can be sure of absolute
+                    peace of mind, whichever of our services you require.
                 </p>
 
                 <sectition class="btns">
                     <PrimaryButton text="BOOK NOW" />
-                    <SecondaryButton text="VIEW CARS" />
                 </sectition>
             </article>
-            <img src="@/assets/img/driver-open-door.webp" alt="Luxury driver opens a door">
         </section>
 
-        <SectionHeading text="our luxury car park" />
-        <div class="cars-container">
-            <CarPreview carName="Mercedes-Benz S Class 2022" image="../src/assets/img/car1.webp"
-                description="Introducing the Mercedes-Benz S-Class 2022. As the epitome of executive saloon cars, our fleet proudly showcases this exceptional model, representing the pinnacle of German engineering and design. Immerse yourself in a world of refined elegance as you experience the unrivaled comfort, cutting-edge technology, and effortless performance that define the Mercedes-Benz S-Class. Perfectly tailored to meet the highest standards of the business world, this extraordinary vehicle effortlessly combines sophistication and innovation, ensuring an unparalleled journey that exceeds expectations." />
+        <SectionHeading text="our services" />
 
-            <CarPreview :inverted="true" carName="Mercedes-Benz S Class 2022" image="../src/assets/img/car1.webp"
-                description="Introducing the Mercedes-Benz S-Class 2022. As the epitome of executive saloon cars, our fleet proudly showcases this exceptional model, representing the pinnacle of German engineering and design. Immerse yourself in a world of refined elegance as you experience the unrivaled comfort, cutting-edge technology, and effortless performance that define the Mercedes-Benz S-Class. Perfectly tailored to meet the highest standards of the business world, this extraordinary vehicle effortlessly combines sophistication and innovation, ensuring an unparalleled journey that exceeds expectations." />
+        <div class="services-container">
+            <ServicePreview serviceName="Airport chauffeur transfer" image="../src/assets/img/service-1.webp"
+                description="Lord Concierge is the leading chauffeur hire company in Baku, with an enviable fleet of executive chauffeured cars available to suit all needs." />
 
-            <CarPreview carName="Mercedes-Benz S Class 2022" image="../src/assets/img/car1.webp"
-                description="Introducing the Mercedes-Benz S-Class 2022. As the epitome of executive saloon cars, our fleet proudly showcases this exceptional model, representing the pinnacle of German engineering and design. Immerse yourself in a world of refined elegance as you experience the unrivaled comfort, cutting-edge technology, and effortless performance that define the Mercedes-Benz S-Class. Perfectly tailored to meet the highest standards of the business world, this extraordinary vehicle effortlessly combines sophistication and innovation, ensuring an unparalleled journey that exceeds expectations." />
+            <ServicePreview :inverted="true" serviceName="Luxury car hire" image="../src/assets/img/service-2.webp"
+                description="Lord Concierge strives to make every client experience extra special. With our supercar hire you can be assured of the highest levels of client care along with the finest vehicles." />
+
+            <ServicePreview serviceName="wedding car hire" image="../src/assets/img/service-3.webp"
+                description="Lord Concierge is the leading wedding cars hire company in Baku, with an enviable fleet of executive chauffeured cars available to suit all needs." />
+
+            <ServicePreview :inverted="true" serviceName="Property management" image="../src/assets/img/service-4.webp"
+                description="Lord Concierge strives to make every client experience extra special. With our property letting and buying you can be assured of the highest levels of convenience." />
         </div>
 
+        <SectionHeading text="travel with unmatched luxury" />
+
+        <div class="values-container">
+            <div class="value-container">
+                <img src="@/assets/img/value-1.webp" alt="Luxury car interior">
+                <h4>Unmatched Convenience</h4>
+            </div>
+
+            <div class="value-container">
+                <img src="@/assets/img/value-2.webp" alt="Luxury car interior">
+                <h4>24/7 Assistance</h4>
+            </div>
+
+            <div class="value-container">
+                <img src="@/assets/img/value-3.webp" alt="Luxury car interior">
+                <h4>Exclusively Connected</h4>
+            </div>
+
+        </div>
+
+        <SectionHeading text="get in touch" />
+        <ContactPanel />
+
+        <SectionHeading text="our partners" />
+
+        <!-- TODO: REMOVE-->
+        <div style="margin-bottom: 20rem;"></div>
 
     </div>
 </template>
@@ -62,7 +96,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.airport-page {
+.home-page {
     padding-top: 7rem;
 }
 
@@ -72,22 +106,29 @@ export default {
 
     img {
         width: 100%;
-        height: auto;
-        filter: brightness(0.4);
+        height: 380px;
+        filter: brightness(0.3);
     }
 
     h1 {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 40%;
+        transform: translate(0%, -50%);
+        left: 5%;
+        color: #FFF;
     }
 
-    h2 {
+    h5 {
         position: absolute;
-        top: 60%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 48%;
+        left: 5%;
+        color: #FFF;
+    }
+
+    .btn {
+        position: absolute;
+        left: 5%;
+        top: 70%;
     }
 }
 
@@ -97,15 +138,24 @@ export default {
     display: flex;
     justify-content: space-between;
 
+
     article {
-        width: 40%;
+        width: 50%;
+        color: #FFF;
 
         h1 {
             margin-bottom: 0;
+            font-size: 1.8rem;
+            text-transform: uppercase;
         }
 
         p {
             font-family: "Inter", sans-serif;
+            font-size: 0.9rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 180.5%;
+            letter-spacing: 0.7px;
         }
     }
 
@@ -128,7 +178,38 @@ export default {
     }
 }
 
-.cars-container {
+.services-container {
     padding: 0 45px;
+}
+
+.values-container {
+    padding: 0 45px;
+    display: flex;
+    justify-content: space-between;
+
+    .value-container {
+        width: 30%;
+
+        img {
+            position: relative;
+            width: 100%;
+            filter: brightness(0.5);
+        }
+
+        h4 {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            color: #FFF;
+            font-size: 1.2rem;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            letter-spacing: 0.4px;
+            width: 100%;
+            text-align: center;
+        }
+    }
 }
 </style>

@@ -4,23 +4,24 @@ import PrimaryButton from './PrimaryButton.vue';
 <template>
     <div class="wrapper">
 
-        <img v-if="!inverted" :src="image" alt="Airport luxury meet & greet">
+        <img v-if="!inverted" :src="image" alt="Lord Concierge services">
         <div class="text-wrapper">
-            <h1>{{ carName }}</h1>
+            <h1>{{ serviceName }}</h1>
             <span class="gold-line"></span>
             <p>
                 {{ description }}
             </p>
-            <PrimaryButton text="VIEW THIS CAR" class="btn"/>
+            <PrimaryButton text="BOOK NOW" class="btn" />
         </div>
-        <img v-if="inverted" :src="image" alt="Airport luxury meet & greet">
+        <img v-if="inverted" :src="image" alt="Lord Concierge services">
     </div>
 </template>
 
 <script>
 export default {
+    name: "ServicePreview",
     props: {
-        carName: String,
+        serviceName: String,
         description: String,
         image: String,
         inverted: Boolean
@@ -37,23 +38,25 @@ export default {
 .wrapper {
     width: 100%;
     display: flex;
+    height: 20rem;
 
     img {
-        width: 60%;
+        width: 65%;
         filter: brightness(0.7);
+        object-fit: cover;
     }
 
     .text-wrapper {
-        width: 40%;
         background: #ECECEC;
-        padding: 25px 40px 25px 25px;
+        padding: 2rem 4rem 2rem 2rem;
         display: flex;
         flex-direction: column;
+
         h1 {
             color: #000;
             font-size: 24px;
             font-family: "Cinzel";
-            font-weight: 700;
+            font-weight: 500;
             margin: 0;
         }
 
@@ -70,11 +73,13 @@ export default {
             color: #000;
             font-size: 12px;
             font-family: "Inter";
-            line-height: 145%;
-            letter-spacing: 0.6px;
+            line-height: 163%;
+            letter-spacing: 0.7px;
+            margin: 0;
         }
     }
-    .btn{
+
+    .btn {
         margin: auto;
         margin-left: 0;
         margin-bottom: 0;
