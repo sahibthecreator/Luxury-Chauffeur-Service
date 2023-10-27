@@ -1,0 +1,1 @@
+/* empty css                                                                      */import{_ as e,o,c as r,b as s,t as a}from"./index-31c511ae.js";const n={name:"PrimaryButton",props:{text:String},setup(){return{}}},c={class:"btn"};function p(_,i,t,d,m,u){return o(),r("div",c,[s("p",null,a(t.text),1)])}const x=e(n,[["render",p],["__scopeId","data-v-c7241493"]]);export{x as P};

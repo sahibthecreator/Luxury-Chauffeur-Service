@@ -6,9 +6,9 @@ import Footer from './components/Footer.vue';
 </script>
 
 <template>
-  <Header />
+  <Header v-if="!isAdminPanel()" />
   <RouterView />
-  <Footer />
+  <Footer v-if="!isAdminPanel()" />
 </template>
 <script>
 export default {
@@ -18,7 +18,14 @@ export default {
     }
   },
   mounted() {
-
+    
+  },
+  methods: {
+    isAdminPanel() {
+      const currentPath = window.location.pathname;
+      const adminPanelSubdirectory = '/admin-panel';
+      return currentPath.startsWith(adminPanelSubdirectory);
+    }
   }
 }
 </script>

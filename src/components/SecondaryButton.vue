@@ -6,7 +6,7 @@
 
 <script>
 export default {
-    name: 'PrimaryButton',
+    name: 'SecondaryButton',
     props: {
         text: String
     },
@@ -14,7 +14,7 @@ export default {
 
 
         return {}
-    }
+    },
 }
 </script>
 
@@ -25,12 +25,29 @@ export default {
     height: fit-content;
     width: fit-content;
     border-radius: 0;
+    transition: all 0.5s;
+    cursor: pointer;
+
     p {
         color: #FFF;
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-family: "Inter";
         font-weight: 600;
         margin: 0;
+    }
+
+
+    &:hover {
+        background-color: #B08500;
+    }
+
+    &.disabled {
+        opacity: 0.5;
+        cursor: default;
+
+        &:hover {
+            background-color: transparent;
+        }
     }
 }
 </style>

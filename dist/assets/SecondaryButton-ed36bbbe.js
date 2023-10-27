@@ -1,0 +1,1 @@
+import{_ as e,o as n,c as o,b as c,t as s}from"./index-31c511ae.js";const a={name:"SecondaryButton",props:{text:String},setup(){return{}}},_={class:"btn"};function r(d,p,t,u,i,l){return n(),o("div",_,[c("p",null,s(t.text),1)])}const y=e(a,[["render",r],["__scopeId","data-v-dd39cac5"]]);export{y as S};

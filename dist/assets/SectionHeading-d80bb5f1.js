@@ -1,0 +1,1 @@
+import{_ as s,o as a,c,b as t,t as n,p as _,e as p}from"./index-31c511ae.js";const d={props:{text:String}},i=e=>(_("data-v-056ef404"),e=e(),p(),e),l=i(()=>t("span",{class:"gold-line"},null,-1));function r(e,u,o,f,S,g){return a(),c("div",null,[t("h2",null,n(o.text),1),l])}const h=s(d,[["render",r],["__scopeId","data-v-056ef404"]]);export{h as S};

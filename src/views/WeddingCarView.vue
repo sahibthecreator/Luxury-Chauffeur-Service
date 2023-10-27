@@ -1,6 +1,5 @@
 <script setup>
 import PrimaryButton from '../components/PrimaryButton.vue';
-import SecondaryButton from '../components/SecondaryButton.vue';
 import SectionHeading from '../components/SectionHeading.vue';
 import CarPreview from '../components/CarPreview.vue';
 </script>
@@ -10,64 +9,85 @@ import CarPreview from '../components/CarPreview.vue';
 
         <section class="main-image-wrapper">
             <img src="@/assets/img/wedding-main.webp" alt="Airport luxury meet & greet">
-            <h1>Wedding Car Hire in Baku</h1>
+            <h1 class="hidden" v-if="isEng()">Wedding Car Hire in Baku</h1>
+            <h1 class="hidden" v-if="!isEng()">Bakıda Toy Maşının İcarəsi</h1>
         </section>
 
         <section class="introduction">
-            <img src="@/assets/img/wedding-1.webp" alt="Luxury driver opens a door">
+            <img class="hidden slideRight" src="@/assets/img/wedding-1.webp" alt="Luxury driver opens a door">
 
-            <article>
-                <h1>Unmatched Luxury and Elegance Wedding Cars</h1>
+            <article class="hidden slideLeft">
+                <h1 v-if="isEng()">Unmatched Luxury and Elegance Wedding Cars</h1>
+                <h1 v-if="!isEng()">Premium Klass Toy Maşınları</h1>
                 <span class="gold-line"></span>
-                <p>
-                    Lord Concierge is a leading provider of wedding car hire in Baku. With our fleet of beautiful chauffeur
-                    driven cars and supercars for hire, there are no other businesses in London who appreciate the
-                    importance of your wedding day as passionately as Lord Concierge.
+                <p v-if="isEng()">
+                    One of Baku's top wedding car rental companies is called Lord Concierge. There are no other companies in
+                    Baku with a fleet of gorgeous chauffeur-driven vehicles and luxury cars for rent that understand the
+                    significance of your wedding day like Lord Concierge.
                     <br><br>
-                    Our Rolls-Royce Phantom is a very popular choice for chauffeur driven wedding car hire in Baku. As the
-                    most luxurious car in our fleet, it will make your wedding day one to remember. With a chauffeur-driven
-                    Rolls-Royce, we guarantee that you will arrive at your chosen venue day on-time and in style.
+                    A highly popular option for chauffeur-driven wedding automobile rental in Baku is our Rolls-Royce
+                    Phantom. It will make your wedding day memorable since it is the most magnificent vehicle in our fleet.
+                    We promise that a chauffeur-driven Rolls-Royce will get you to your desired place on time and in style.
+                </p>
+                <p v-if="!isEng()">
+                    Bakının məşhur toy avtomobillərinin icarəsi şirkətlərindən biri Lord Concierge adlanır. Başqa şirkətlər
+                    yoxdur
+                    Bakı gözəl şoferlə idarə olunan avtomobillər parkı və kirayə verilən lüks avtomobillər ...
+                    Lord Concierge kimi toy gününüzün əhəmiyyəti.
+                    <br><br>
+                    Bakıda şoferli toy avtomobilinin kirayəsi üçün çox populyar seçim bizim Rolls-Royce-dur.
+                    Fantom. Donanmamızın ən möhtəşəm avtomobili olduğu üçün toy gününüzü yaddaqalan edəcək.
+                    Biz söz veririk ki, şoferlə idarə olunan Rolls-Royce sizi istədiyiniz yerə vaxtında və üslubda
+                    çatdıracaq.
                 </p>
 
-                <PrimaryButton text="REQUEST NOW" class="btn" />
+                <PrimaryButton text="REQUEST NOW" class="btn" @click="navigateToContact" v-if="isEng()" />
+                <PrimaryButton text="REZERV ED" class="btn" @click="navigateToContact" v-if="!isEng()" />
+
             </article>
         </section>
 
-        <SectionHeading text="our luxury wedding car park" />
-        <div class="cars-container">
-            <CarPreview carName="Mercedes-Benz S Class 2022" image="../src/assets/img/car1.webp"
-                description="Introducing the Mercedes-Benz S-Class 2022. As the epitome of executive saloon cars, our fleet proudly showcases this exceptional model, representing the pinnacle of German engineering and design. Immerse yourself in a world of refined elegance as you experience the unrivaled comfort, cutting-edge technology, and effortless performance that define the Mercedes-Benz S-Class. Perfectly tailored to meet the highest standards of the business world, this extraordinary vehicle effortlessly combines sophistication and innovation, ensuring an unparalleled journey that exceeds expectations." />
+        <SectionHeading text="our luxury wedding car park" v-if="isEng()" />
+        <SectionHeading text="premium toy avtoparkımız" v-if="!isEng()" />
 
-            <CarPreview :inverted="true" carName="Mercedes-Benz S Class 2022" image="../src/assets/img/car1.webp"
-                description="Introducing the Mercedes-Benz S-Class 2022. As the epitome of executive saloon cars, our fleet proudly showcases this exceptional model, representing the pinnacle of German engineering and design. Immerse yourself in a world of refined elegance as you experience the unrivaled comfort, cutting-edge technology, and effortless performance that define the Mercedes-Benz S-Class. Perfectly tailored to meet the highest standards of the business world, this extraordinary vehicle effortlessly combines sophistication and innovation, ensuring an unparalleled journey that exceeds expectations." />
-
-            <CarPreview carName="Mercedes-Benz S Class 2022" image="../src/assets/img/car1.webp"
-                description="Introducing the Mercedes-Benz S-Class 2022. As the epitome of executive saloon cars, our fleet proudly showcases this exceptional model, representing the pinnacle of German engineering and design. Immerse yourself in a world of refined elegance as you experience the unrivaled comfort, cutting-edge technology, and effortless performance that define the Mercedes-Benz S-Class. Perfectly tailored to meet the highest standards of the business world, this extraordinary vehicle effortlessly combines sophistication and innovation, ensuring an unparalleled journey that exceeds expectations." />
+        <div class="cars-container hidden">
+            <CarPreview v-for="(car, i) in cars" :car="car" :inverted="i % 2" />
         </div>
 
 
         <div class="contact-panel">
-            <h1>Get in touch</h1>
+            <h1 v-if="isEng()">Get in touch</h1>
+            <h1 v-if="!isEng()">Əlaqə saxlayın</h1>
             <section class="details">
-
                 <div class="input-row">
                     <div>
-                        <label for="">Full Name*</label>
-                        <input type="text" placeholder="Your name">
+                        <label v-if="isEng()">Full Name*</label>
+                        <label v-if="!isEng()">Ad ve Soyad*</label>
+                        <input type="text" placeholder="Your full name" v-model="fullName" v-if="isEng()">
+                        <input type="text" placeholder="Adınız ve Soyadınız" v-model="fullName" v-if="!isEng()">
                     </div>
                     <div>
-                        <label for="">Phone*</label>
-                        <input type="text" placeholder="Your phone number">
+                        <label v-if="isEng()">Phone*</label>
+                        <label v-if="!isEng()">Telefon Nömrəsi*</label>
+                        <input type="text" placeholder="Your contact phone" v-model="phone" v-if="isEng()">
+                        <input type="text" placeholder="Telefon nömrəniz" v-model="phone" v-if="!isEng()">
                     </div>
                 </div>
 
-                <label for="">Email*</label>
-                <input type="email" placeholder="Your email">
+                <label v-if="isEmailOption">Email*</label>
+                <input type="email" placeholder="Your contact email" v-model="email" v-if="isEng()">
+                <input type="email" placeholder="Əlaqə e-poçtunuz" v-model="email" v-if="!isEng()">
 
-                <label for="">Message*</label>
-                <input type="text" placeholder="Your message">
-                <div class="btn">
-                    <p>SEND</p>
+                <label for="" v-if="isEng()">Message*</label>
+                <label for="" v-if="!isEng()">Mesaj*</label>
+                <input type="text" placeholder="How can we help you?" v-model="message" v-if="isEng()">
+                <input type="text" placeholder="Sizə necə kömək edə bilərik?" v-model="message" v-if="!isEng()">
+                <div id="status-box">
+                    <p>{{ statusMsg }}</p>
+                </div>
+                <div class="btn" id="send-message-btn" @click="saveMessage">
+                    <p v-if="isEng()">SEND</p>
+                    <p v-if="!isEng()">GÖNDERMEK</p>
                 </div>
             </section>
         </div>
@@ -77,11 +97,83 @@ import CarPreview from '../components/CarPreview.vue';
 </template>
 
 <script>
+import ContactUsService from '../services/ContactUsService';
+import CarService from '../services/CarService';
+
 export default {
-    setup() {
+    data() {
+        return {
+            statusMsg: "",
+            fullName: "",
+            email: "",
+            phone: "",
+            message: "",
+            cars: [],
+        }
+    },
+    mounted() {
+        this.getCars();
 
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+            });
+        });
 
-        return {}
+        const hidenElements = document.querySelectorAll(".hidden");
+        hidenElements.forEach((el) => observer.observe(el));
+    },
+    methods: {
+        saveMessage() {
+            let statusBox = document.getElementById("status-box");
+            if (!(this.fullName.length > 0 && this.email.length > 0 && this.phone.length > 0 && this.message.length > 0)) {
+                statusBox.style.opacity = 1;
+                statusBox.classList.remove("success");
+                this.statusMsg = "Please fill all the fields";
+                return;
+            }
+
+            let data = {
+                "fullName": this.fullName,
+                "email": this.email,
+                "phone": this.phone,
+                "message": this.message,
+            }
+
+            ContactUsService.saveMessage(data).then(res => {
+                statusBox.style.opacity = 1;
+                if (res.status == 200) {
+                    statusBox.classList.add("success");
+                    this.statusMsg = "Message was sent successfully";
+                    document.getElementById("send-message-btn").classList.add("disabled");
+
+                } else {
+                    statusBox.classList.remove("success");
+                    this.statusMsg = res.data;
+                }
+            })
+        },
+        getCars() {
+            CarService.getAll().then(res => {
+                if (res.status == 200) {
+                    res.data.forEach(car => {
+                        if (car.type == "Airport") {
+                            this.cars.push(car)
+                            console.log(car.name);
+                        }
+                    });
+                } else {
+                }
+            })
+        },
+        navigateToContact() {
+            this.$router.push('/contact-us');
+        },
+        isEng() {
+            return localStorage.getItem('lang') == 'en';
+        },
     }
 }
 </script>
@@ -107,6 +199,7 @@ export default {
         left: 50%;
         transform: translate(-50%, -50%);
         color: #FFF;
+        text-transform: uppercase;
     }
 }
 
@@ -233,6 +326,7 @@ export default {
         margin: auto;
         margin-top: 2rem;
         transition: .3s all;
+        border: 1px solid transparent;
 
         p {
             color: #FFF;
@@ -251,6 +345,103 @@ export default {
                 color: #B08500;
             }
         }
+
+        &.disabled {
+            opacity: 0.5;
+            cursor: default;
+
+            &:hover {
+                background-color: #B08500;
+                border: 1px solid transparent;
+            }
+        }
     }
+
+    #status-box {
+        display: flex;
+        justify-content: center;
+        background: #a00b0b;
+        border-radius: 0;
+        width: 100%;
+        height: fit-content;
+        padding: 10px;
+        opacity: 0;
+
+        p {
+            color: #FFF;
+            font-family: "Inter";
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            margin: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        &.success {
+            background: #097d15;
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .airport-page {
+        padding-top: 1rem;
+
+        .main-image-wrapper {
+            text-align: center;
+
+            img {
+                object-fit: cover;
+                height: 390px;
+                width: auto;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                width: 60%;
+            }
+
+            h2 {
+                margin-top: 1rem;
+                font-size: 1.2rem;
+            }
+
+        }
+
+
+        .introduction {
+            flex-direction: column;
+            padding: 0 15px;
+            gap: 1rem;
+            margin-top: 2rem;
+
+            img {
+                width: 100%;
+                order: 1;
+            }
+
+            article {
+                width: 100%;
+                order: 2;
+            }
+
+        }
+
+        .cars-container {
+            padding: 0 15px;
+        }
+
+        .contact-panel {
+            .details {
+                width: 100%;
+                padding: 20px 15px;
+            }
+        }
+
+
+    }
+
 }
 </style>

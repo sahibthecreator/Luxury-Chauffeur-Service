@@ -4,31 +4,33 @@ import PrimaryButton from './PrimaryButton.vue';
 <template>
     <div class="wrapper">
 
-        <img v-if="!inverted" :src="image" alt="Airport luxury meet & greet">
+        <img v-if="!inverted == 1" :src="'/../api/public/car_images/' + car.car_image + '?s'" alt="Airport luxury meet & greet service car">
         <div class="text-wrapper">
-            <h1>{{ carName }}</h1>
+            <h1>{{ car.name }}</h1>
             <span class="gold-line"></span>
             <p>
-                {{ description }}
+                {{ isEng() ? car?.description : car?.description_az }}
             </p>
-            <PrimaryButton text="VIEW THIS CAR" class="btn"/>
+            <PrimaryButton text="VIEW THIS CAR" class="btn" @click="navigateToCarPage()" v-if="isEng()"/>
+            <PrimaryButton text="DAHA ƏTRAFLI" class="btn" @click="navigateToCarPage()" v-if="!isEng()"/>
         </div>
-        <img v-if="inverted" :src="image" alt="Airport luxury meet & greet">
+        <img v-if="inverted == 1" :src="'/../api/public/car_images/' + car.car_image + '?s'" alt="Airport luxury meet & greet">
     </div>
 </template>
 
 <script>
 export default {
     props: {
-        carName: String,
-        description: String,
-        image: String,
-        inverted: Boolean
+        inverted: Number,
+        car: Object,
     },
-    setup() {
-
-
-        return {}
+    methods: {
+        navigateToCarPage() {
+            this.$router.push({ path: `/details/${this.car.name}`, query: { id: this.car.id } })
+        },
+        isEng() {
+            return localStorage.getItem('lang') == 'en';
+        },
     }
 }
 </script>
@@ -40,6 +42,7 @@ export default {
 
     img {
         width: 60%;
+        object-fit: cover;
         filter: brightness(0.7);
     }
 
@@ -49,6 +52,7 @@ export default {
         padding: 25px 40px 25px 25px;
         display: flex;
         flex-direction: column;
+
         h1 {
             color: #000;
             font-size: 24px;
@@ -74,11 +78,38 @@ export default {
             letter-spacing: 0.6px;
         }
     }
-    .btn{
+
+    .btn {
         margin: auto;
         margin-left: 0;
         margin-bottom: 0;
         margin-right: 0;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+
+    .wrapper {
+        flex-direction: column;
+        height: fit-content;
+
+        img {
+            width: 100%;
+            order: 1;
+        }
+
+        .text-wrapper {
+            width: 100%;
+            order: 2;
+
+            .gold-line {
+                margin-bottom: 1rem;
+            }
+
+            .btn {
+                margin-top: 0;
+            }
+        }
     }
 }
 </style>
